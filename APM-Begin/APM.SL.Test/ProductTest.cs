@@ -34,7 +34,7 @@ namespace APM.SL.Test
       decimal actual = product.CalculateMargin(cost, price);
 
       // Assert
-      Assert.Equal(expected, actual);
+      Assert.Equal(expected, actual,0);
     }
 
     [Fact]
@@ -82,7 +82,7 @@ namespace APM.SL.Test
       decimal actual = product.CalculateMargin(cost, price);
 
       // Assert
-      Assert.Equal(expected, actual);
+      Assert.Equal(expected, actual,0);
     }
 
     [Fact]
@@ -98,7 +98,7 @@ namespace APM.SL.Test
       decimal actual = product.CalculateMargin(cost, price);
 
       // Assert
-      Assert.Equal(expected, actual);
+      Assert.Equal(expected, actual,1);
     }
 
     [Fact]
@@ -130,7 +130,7 @@ namespace APM.SL.Test
       decimal actual = product.CalculateMargin(cost, price);
 
       // Assert
-      Assert.Equal(expected, actual);
+      Assert.Equal(expected, actual,0);
     }
 
     [Fact]
@@ -159,7 +159,7 @@ namespace APM.SL.Test
 
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => product.CalculateMargin(cost, price));
-      Assert.Equal("The price must be a number greater than 0 (Parameter 'price')", ex.Message);
+      Assert.Equal("The price must be a number greater than 0", ex.Message);
     }
 
     [Fact]
@@ -172,7 +172,7 @@ namespace APM.SL.Test
 
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => product.CalculateMargin(cost, price));
-      Assert.Equal("Please enter the price (Parameter 'price')", ex.Message);
+      Assert.Equal("Please enter the price (Parameter 'priceInput')", ex.Message);
     }
 
     [Fact]
@@ -185,7 +185,7 @@ namespace APM.SL.Test
 
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => product.CalculateMargin(cost, price));
-      Assert.Equal("Please enter the cost (Parameter 'cost')", ex.Message);
+      Assert.Equal("Please enter the cost (Parameter 'costInput')", ex.Message);
     }
 
     [Fact]
@@ -199,7 +199,7 @@ namespace APM.SL.Test
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => 
 	                              product.CalculateMargin(cost, price));
-      Assert.Equal("Please enter the price (Parameter 'price')", ex.Message);
+      Assert.Equal("Please enter the price (Parameter 'priceInput')", ex.Message);
     }
 
     [Fact]
@@ -213,7 +213,7 @@ namespace APM.SL.Test
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => 
 	                              product.CalculateMargin(cost, price));
-      Assert.Equal("Please enter the cost (Parameter 'cost')", ex.Message);
+      Assert.Equal("Please enter the cost (Parameter 'costInput')", ex.Message);
     }
 
     [Fact]
@@ -226,7 +226,7 @@ namespace APM.SL.Test
 
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => product.CalculateMargin(cost, price));
-      Assert.Equal("The price must be a number greater than 0 (Parameter 'price')", ex.Message);
+      Assert.Equal("The price must be a number greater than 0", ex.Message);
     }
 
     [Fact]
@@ -242,7 +242,7 @@ namespace APM.SL.Test
 
       // Assert
       var ex = Assert.Throws<ArgumentException>(act);
-      Assert.Equal("The cost must be a number 0 or greater (Parameter 'cost')", ex.Message);
+      Assert.Equal("The cost must be a number 0 or greater", ex.Message);
     }
 
     [Fact]
@@ -256,7 +256,7 @@ namespace APM.SL.Test
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => 
                                       product.CalculateMargin(cost, price));
-      Assert.Equal("The cost must be a number 0 or greater (Parameter 'cost')",
+      Assert.Equal("The cost must be a number 0 or greater",
                     ex.Message);
     }
 
@@ -445,7 +445,7 @@ namespace APM.SL.Test
 
       // Assert
       Assert.Equal(expected, actual);
-      Assert.Equal("Date must be at least 7 days from today", message);
+      Assert.Equal("Dateï¿½mustï¿½beï¿½at least 7 days fromï¿½today", message);
     }
 
     [Fact]
@@ -461,7 +461,7 @@ namespace APM.SL.Test
 
       // Assert
       Assert.Equal(expected, actual);
-      Assert.Equal("Date must be at least 7 days from today", message);
+      Assert.Equal("Dateï¿½mustï¿½beï¿½at least 7 days fromï¿½today", message);
     }
 
     [Fact]
@@ -469,7 +469,7 @@ namespace APM.SL.Test
     {
       // Arrange
       DateTime? effectiveDate = DateTime.Now;
-      var expected = (IsValid: false, Message: "Date must be at least 7 days from today");
+      var expected = (IsValid: false, Message: "Dateï¿½mustï¿½beï¿½at least 7 days fromï¿½today");
       var product = new Product();
 
       // Act
@@ -486,7 +486,7 @@ namespace APM.SL.Test
     {
       // Arrange
       DateTime? effectiveDate = DateTime.Now;
-      var expected = new OperationResult() { Success = false, ValidationMessage = "Date must be at least 7 days from today" };
+      var expected = new OperationResult() { Success = false, ValidationMessage = "Dateï¿½mustï¿½beï¿½at least 7 days fromï¿½today" };
       var product = new Product();
 
       // Act
@@ -502,12 +502,12 @@ namespace APM.SL.Test
     {
       // Arrange
       DateTime? effectiveDate = DateTime.Now;
-      var expected = new OperationResult() { Success = false, ValidationMessage = "Date must be at least 7 days from today" };
+      var expected = new OperationResult() { Success = false, ValidationMessage = "Dateï¿½mustï¿½beï¿½at least 7 days fromï¿½today" };
       var product = new Product();
 
       // Act & Assert
       var ex = Assert.Throws<ArgumentException>(() => product.ValidateEffectiveDateWithException(effectiveDate));
-      Assert.Equal("Date must be at least 7 days from today", ex.Message);
+      Assert.Equal("Dateï¿½mustï¿½beï¿½at least 7 days fromï¿½today", ex.Message);
     }
   }
 }

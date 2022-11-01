@@ -32,12 +32,21 @@ namespace APM.SL
     /// <returns>Resulting profit margin</returns>
     public decimal CalculateMargin(string costInput, string priceInput)
     {
+      if (string.IsNullOrWhiteSpace(costInput))
+        throw new ArgumentException("Please enter the cost", nameof(costInput));
+
+      if (string.IsNullOrWhiteSpace(priceInput))
+      {
+        throw new ArgumentException("Please enter the price", nameof(priceInput));
+      }
       
       var success = decimal.TryParse(costInput, out decimal cost);
-      if (!success) throw new ArgumentException("The cost must be a number");
+      if (!success || cost < 0) 
+        throw new ArgumentException("The cost must be a number 0 or greater");
       
       success = decimal.TryParse(priceInput, out decimal price);
-      if (!success || price <= 0) throw new ArgumentException("The price must be a number greater than 0");
+      if (!success || price <= 0) 
+        throw new ArgumentException("The price must be a number greater than 0");
 
       return ((price - cost) / price) * 100M;
 
@@ -107,7 +116,7 @@ namespace APM.SL
 
       if (effectiveDate.Value < DateTime.Now.AddDays(7))
       {
-        validationMessage = "Date must be at least 7 days from today";
+        validationMessage = "Date�must�be�at least 7 days from�today";
         return false;
       }
 
@@ -125,7 +134,7 @@ namespace APM.SL
 
       if (effectiveDate.Value < DateTime.Now.AddDays(7))
       {
-        validationMessage = "Date must be at least 7 days from today";
+        validationMessage = "Date�must�be�at least 7 days from�today";
         return false;
       }
 
@@ -136,7 +145,7 @@ namespace APM.SL
     {
       if (!effectiveDate.HasValue) return (IsValid: false, ValidationMessage: "Date has no value");
 
-      if (effectiveDate.Value < DateTime.Now.AddDays(7)) return (false, "Date must be at least 7 days from today");
+      if (effectiveDate.Value < DateTime.Now.AddDays(7)) return (false, "Date�must�be�at least 7 days from�today");
 
       return (IsValid: true, ValidationMessage: "");
     }
@@ -147,16 +156,16 @@ namespace APM.SL
       { Success = false, ValidationMessage = "Date has no value" };
 
       if (effectiveDate.Value < DateTime.Now.AddDays(7)) return new OperationResult()
-      { Success = false, ValidationMessage = "Date must be at least 7 days from today" };
+      { Success = false, ValidationMessage = "Date�must�be�at least 7 days from�today" };
 
       return new OperationResult() { Success = true };
     }
 
     public bool ValidateEffectiveDateWithException(DateTime? effectiveDate)
     {
-      if (!effectiveDate.HasValue) throw new ArgumentException("Please enter the effective date");
+      if (!effectiveDate.HasValue) throw new ArgumentException("Please�enter�the�effective date");
 
-      if (effectiveDate.Value < DateTime.Now.AddDays(7)) throw new ArgumentException("Date must be at least 7 days from today");
+      if (effectiveDate.Value < DateTime.Now.AddDays(7)) throw new ArgumentException("Date�must�be�at least 7 days from�today");
 
       return true;
     }
